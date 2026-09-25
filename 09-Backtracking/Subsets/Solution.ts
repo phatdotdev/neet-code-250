@@ -13,6 +13,8 @@ class Solution {
         curr.push(nums[index]);
         this.backtrack(nums, index + 1, curr, res);
         curr.pop();
+
         this.backtrack(nums, index + 1, curr, res);
+
     }
 }

@@ -1,0 +1,32 @@
+class Solution {
+    setZeroes(matrix: number[][]): void {
+        const n = matrix.length;
+        const m = matrix[0].length;
+
+        let col0 = false;
+
+        for (let i = 0; i < n; i++) {
+            if (matrix[i][0] == 0) {
+                col0 = true;
+            }
+
+            for (let j = 1; j < m; j++) {
+                if (matrix[i][j] == 0) {
+                    matrix[i][0] = 0;
+                    matrix[0][j] = 0;
+                }
+            }
+        }
+
+        for (let i = n - 1; i >= 0; i--) {
+            for (let j = m - 1; j >= 1; j--) {
+                if (matrix[i][0] == 0 || matrix[0][j] == 0) {
+                    matrix[i][j] = 0;
+                }
+            }
+            if (col0) {
+                matrix[i][0] = 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,27 @@
+class Solution {
+    maxTurbulenceSize(arr: number[]): number {
+        const n = arr.length;
+        if (n < 2) {
+            return n;
+        }
+        let up = 1;
+        let down = 1;
+        let maxLen = 1;
+
+        for (let i = 1; i < n; i++) {
+            if (arr[i] > arr[i - 1]) {
+                up = down + 1;
+                down = 1;
+            } else if (arr[i] < arr[i - 1]) {
+                down = up + 1;
+                up = 1;
+            } else {
+                up = 1;
+                down = 1;
+            }
+            maxLen = Math.max(maxLen, Math.max(up, down));
+        }
+
+        return maxLen;
+    }
+}
